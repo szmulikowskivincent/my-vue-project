@@ -16,6 +16,8 @@ import About from "./views/About.vue";
 import SelectAllArtistes from "./views/dataAPI/selectAllArtistes.vue";
 import DashboardAPI from "./views/dataAPI/dashboardAPI.vue";
 import Albums from "./views/dataAPI/albums.vue";
+import Corbeille from "./views/dataAPI/corbeille.vue";
+import Genres from "./views/dataAPI/genres.vue";
 
 const routes = [
   { path: "/", component: RegisterForm },
@@ -26,6 +28,8 @@ const routes = [
   { path: "/todos-list", component: TodoList },
   { path: "/selectAll", component: SelectAllArtistes },
   { path: "/albums", component: Albums },
+  { path: "/corbeille", component: Corbeille },
+  { path: "/genres", component: Genres },
   { path: "/dashboardAPI", component: DashboardAPI },
 ];
 

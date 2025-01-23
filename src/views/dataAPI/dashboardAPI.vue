@@ -1,15 +1,18 @@
 <template>
   <div class="background-container">
+    <img src="https://jouretnuit.paris/wp-content/uploads/2016/10/spotify-banniere.png" />
     <SelectAllArtistes />
     <div class="container mt-5">
-      <h1 style="margin-inline-start: -2090px; margin-block-start: -150px;" class="text-center">
+      <h1 style="margin-inline-start: -2150px; margin-block-start: -350px;" class="text-center">
         <i class="bi bi-house-door"></i> Dashboard API
       </h1>
       <div class="row">
         <div class="col-md-12">
+          <Logout />
           <Albums />
+          <Genres />
           <postAlbums />
-          <RechercheAlbumsID />
+          <Corbeille />
         </div>
       </div>
     </div>
@@ -20,14 +23,18 @@
 import Albums from '../dataAPI/albums.vue';
 import SelectAllArtistes from '../dataAPI/selectAllArtistes.vue';
 import PostAlbums from './postAlbums.vue';
-import RechercheAlbumsID from '../dataAPI/rechercheAlbumsID.vue';
+import Corbeille from './corbeille.vue';
+import Genres from '../dataAPI/genres.vue';
+import Logout from '../dataAPI/logout.vue';
 
 export default {
   components: {
     Albums,
     SelectAllArtistes,
     PostAlbums,
-    RechercheAlbumsID,
+    Corbeille,
+    Genres,
+    Logout
   },
 };
 </script>
@@ -48,5 +55,10 @@ export default {
 .container {
   position: relative;
   z-index: 1;
+}
+
+img {
+  inline-size: 2480px ;
+  block-size: auto;
 }
 </style>
