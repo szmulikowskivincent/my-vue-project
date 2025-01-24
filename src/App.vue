@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Nav />
+    <SubNavBar />
 
     <router-view></router-view>
 
@@ -10,11 +11,13 @@
 
 <script>
 import Nav from "./components/Nav.vue";
+import SubNavBar from "../src/views/dataAPI/sub-NavBar.vue";
 import Footer from "./components/Footer.vue";
 
 export default {
   components: {
     Nav,
+    SubNavBar,
     Footer,
   },
 };

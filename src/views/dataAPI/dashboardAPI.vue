@@ -38,7 +38,7 @@ export default {
     Corbeille,
     Genres,
     Logout,
-    postTracksVue
+    postTracksVue,
   },
 };
 </script>

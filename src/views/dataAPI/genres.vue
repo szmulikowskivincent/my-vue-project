@@ -1,5 +1,5 @@
 <template>
-  <div style=" margin-left: 200px; margin-top: -190px;">
+  <div style=" margin-left: 200px; margin-top: 10px;">
     <ul class="genres-list">
       <li v-for="(genre, index) in genres" :key="genre.id" :class="'genre-' + (index % 5)">{{ genre.name }}</li>
     </ul>

@@ -220,7 +220,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .form-container {
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
