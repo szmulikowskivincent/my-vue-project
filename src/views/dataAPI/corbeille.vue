@@ -33,6 +33,7 @@
             </div>
         </div>
     </div>
+    <br />
 </template>
 
 <script>
@@ -41,7 +42,7 @@ export default {
     data() {
         return {
             showTrash: false,
-            deletedAlbums: [], 
+            deletedAlbums: [],
         };
     },
     mounted() {
@@ -56,7 +57,7 @@ export default {
         },
         clearTrash() {
             this.deletedAlbums = [];
-            localStorage.setItem("deletedAlbums", JSON.stringify(this.deletedAlbums)); 
+            localStorage.setItem("deletedAlbums", JSON.stringify(this.deletedAlbums));
             alert("Corbeille vidée");
         },
         restoreAlbum(albumId) {

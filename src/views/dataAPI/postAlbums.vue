@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-left: 920px; margin-top: -230px;" class="container-fluid position-relative">
+    <div style="margin-left: 920px; margin-top: -250px; position: fixed;" class="container-fluid position-relative">
         <div class="form-container position-relative p-4 rounded mt-3 mx-auto">
             <h2 class="mb-4 text-center">
                 <i class="bi bi-plus-circle me-2"></i> {{ album.id ? "Modifier un album" : "Ajouter un album" }}
@@ -105,7 +105,7 @@ export default {
             searchedAlbum: null,
             message: "",
             messageClass: "",
-            token:`Bearer 3|QZinO4JbAPBK3PkojH6MUT5BrQsCu2NVLlDZoG416fc7e692`
+            token: `Bearer 3|QZinO4JbAPBK3PkojH6MUT5BrQsCu2NVLlDZoG416fc7e692`
         };
     },
     mounted() {

@@ -18,6 +18,7 @@ import DashboardAPI from "./views/dataAPI/dashboardAPI.vue";
 import Albums from "./views/dataAPI/albums.vue";
 import Corbeille from "./views/dataAPI/corbeille.vue";
 import Genres from "./views/dataAPI/genres.vue";
+import PostTracks from "./views/dataAPI/postTracks.vue";
 
 const routes = [
   { path: "/", component: RegisterForm },
@@ -30,6 +31,7 @@ const routes = [
   { path: "/albums", component: Albums },
   { path: "/corbeille", component: Corbeille },
   { path: "/genres", component: Genres },
+  { path: "/tracks", component: PostTracks },
   { path: "/dashboardAPI", component: DashboardAPI },
 ];
 

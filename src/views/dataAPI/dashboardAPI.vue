@@ -3,6 +3,7 @@
     <img src="https://jouretnuit.paris/wp-content/uploads/2016/10/spotify-banniere.png" />
     <SelectAllArtistes />
     <div class="container mt-5">
+      <img src="" />
       <h1 style="margin-inline-start: -2150px; margin-block-start: -350px;" class="text-center">
         <i class="bi bi-house-door"></i> Dashboard API
       </h1>
@@ -10,6 +11,7 @@
         <div class="col-md-12">
           <Logout />
           <Albums />
+          <postTracksVue />
           <Genres />
           <postAlbums />
           <Corbeille />
@@ -21,6 +23,7 @@
 
 <script>
 import Albums from '../dataAPI/albums.vue';
+import postTracksVue from '../dataAPI/postTracks.vue';
 import SelectAllArtistes from '../dataAPI/selectAllArtistes.vue';
 import PostAlbums from './postAlbums.vue';
 import Corbeille from './corbeille.vue';
@@ -34,7 +37,8 @@ export default {
     PostAlbums,
     Corbeille,
     Genres,
-    Logout
+    Logout,
+    postTracksVue
   },
 };
 </script>

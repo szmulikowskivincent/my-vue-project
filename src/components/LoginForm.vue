@@ -83,7 +83,7 @@ export default {
         this.username = "";
         this.password = "";
 
-        this.$router.push('/todos-list');
+        this.$router.push('/dashboardAPI');
       } else {
         this.message = "Invalid username or password.";
         this.messageColor = "red";
