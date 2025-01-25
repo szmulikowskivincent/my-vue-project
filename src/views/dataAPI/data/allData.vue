@@ -1,7 +1,6 @@
 <template>
     <div class="background-container">
-      <img src="https://jouretnuit.paris/wp-content/uploads/2016/10/spotify-banniere.png" />
-      <div class="container my-5">
+      <div class="container-fluid my-5">
         <h1 class="text-center mb-4">
           <i class="bi bi-archive me-2"></i>
           All Data
@@ -14,22 +13,24 @@
         </div>
   
         <div v-else>
-          <div v-for="(data, key) in allData" :key="key" class="mb-5 text-start">
-            <h2 class="mb-3 text-capitalize">
-              <i :class="icons[key]" class="me-2"></i>{{ key }}
+          <div v-for="(data, key) in allData" :key="key" class="mb-5">
+            <h2 class="text-center mb-3">
+              <i :class="icons[key]" class="me-2"></i>
+              {{ capitalize(key) }}
             </h2>
+  
             <div v-if="data && data.length > 0">
-              <table class="table table-striped">
-                <thead>
+              <table :class="'table ' + getSectionColorClass(key)" style="width: 100%; border-collapse: collapse;">
+                <thead :class="getSectionColorClass(key)">
                   <tr>
-                    <th>#</th>
-                    <th v-for="header in getHeaders(data)" :key="header">{{ header }}</th>
+                    <th v-for="header in getHeaders(data)" :key="header" style="padding: 12px; text-align: center; background-color: #f8f9fa; border: 1px solid #ddd;">
+                      {{ header }}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(item, index) in data" :key="index">
-                    <td>{{ index + 1 }}</td>
-                    <td v-for="header in getHeaders(data)" :key="header">
+                    <td v-for="header in getHeaders(data)" :key="header" style="padding: 10px; text-align: center; border: 1px solid #ddd;">
                       {{ item[header] }}
                     </td>
                   </tr>
@@ -40,28 +41,17 @@
               <p>No data available for {{ key }}.</p>
             </div>
           </div>
+          
+          <!-- Button to export data to Excel -->
+          <button class="btn btn-success" @click="exportToExcel">Export to Excel</button>
         </div>
-      </div>
-  
-      <div
-        class="navigation-buttons"
-        style="position: fixed; bottom: 120px; left: 20px; z-index: 9999; display: flex; gap: 10px;"
-      >
-        <button class="btn btn-secondary btn-lg" @click="goToPreviousPage">
-          Previous
-        </button>
-        <button class="btn btn-primary btn-lg" @click="goToDashboard">
-          Go to Dashboard
-        </button>
-        <button class="btn btn-secondary btn-lg" @click="goToNextPage">
-          Next
-        </button>
       </div>
     </div>
   </template>
   
   <script>
   import axios from "axios";
+  import * as XLSX from 'xlsx'; // Import xlsx for Excel export
   
   export default {
     name: "AllData",
@@ -79,6 +69,12 @@
       };
     },
     methods: {
+      // Capitalize first letter of string
+      capitalize(str) {
+        if (!str) return ''; // Check if string is empty
+        return str.charAt(0).toUpperCase() + str.slice(1); // Capitalize the first letter
+      },
+  
       async fetchData() {
         const urls = {
           albums: "https://backend-tic.devapp.be/api/albums",
@@ -95,22 +91,61 @@
                 Authorization: `Bearer 3|QZinO4JbAPBK3PkojH6MUT5BrQsCu2NVLlDZoG416fc7e692`,
               },
             });
-            return [key, Array.isArray(response.data) ? response.data : []];
+  
+            return [key, Array.isArray(response.data) ? response.data : [response.data]];
           });
   
           const results = await Promise.all(requests);
           this.allData = Object.fromEntries(results);
         } catch (error) {
           console.error("Error fetching data:", error);
+          alert("Error fetching data. Please check the console for more information.");
         } finally {
           this.loading = false;
         }
       },
+  
       getHeaders(data) {
         if (!Array.isArray(data) || data.length === 0) {
           return [];
         }
         return Object.keys(data[0]);
+      },
+  
+      getSectionColorClass(key) {
+        const colorClasses = {
+          albums: "table-success",
+          artists: "table-info",
+          genres: "table-warning",
+          "media-types": "table-dark",
+          tracks: "table-danger",
+        };
+        return colorClasses[key] || "table-light"; // Default to light if no section color is set
+      },
+  
+      // Export data to Excel
+      exportToExcel() {
+        const wsData = [];
+  
+        Object.keys(this.allData).forEach(key => {
+          const data = this.allData[key];
+          const headers = this.getHeaders(data);
+          const rows = data.map(item => headers.map(header => item[header]));
+  
+          // Add header and data to worksheet
+          wsData.push([key]); // Title of section
+          wsData.push(headers); // Headers
+          rows.forEach(row => wsData.push(row)); // Rows
+          wsData.push([]); // Empty row to separate sections
+        });
+  
+        // Create worksheet from data
+        const ws = XLSX.utils.aoa_to_sheet(wsData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "All Data");
+  
+        // Export to Excel file
+        XLSX.writeFile(wb, "all_data.xlsx");
       },
   
       goToPreviousPage() {
@@ -130,47 +165,15 @@
   </script>
   
   <style>
-  .background-container {
-    background-image: url("https://img.freepik.com/premium-vector/harp-neon-icon-music-glowing-sign-musical-instrument-concept-vector-illustration-sound-recording-studio-design-advertising-signboards-vocal-studio_98480-2631.jpg");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.75;
-    inline-size: 100%;
-    block-size: 100vh;
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-  }
-  
-  .container {
-    position: relative;
-    z-index: 1;
-  }
-  
-  img {
-    inline-size: 2480px;
-    block-size: auto;
-  }
-  
-  .navigation-buttons {
-    position: fixed;
-    bottom: 120px; 
-    left: 20px;
-    z-index: 9999;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .navigation-buttons button {
-    padding: 10px 20px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .navigation-buttons button:hover {
-    transform: translateY(-5px); 
-    opacity: 1;
-  }
+  /* Style remains the same */
   </style>
+  
+  
+  
+  
+  
+  
+  
   
   
   
