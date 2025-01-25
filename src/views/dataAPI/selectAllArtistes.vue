@@ -14,7 +14,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="artisteSelect" class="form-label"></label>
-            <select style="margin-block-start: -250px; margin-left: -25px;" class="form-select" id="artisteSelect"
+            <select style="margin-block-start: -210px; margin-left: -25px;" class="form-select" id="artisteSelect"
               v-model="selectedArtiste" @change="openModal">
               <option value="">--🎧 Sélectionner un artiste --</option>
               <option v-for="artiste in artistes" :key="artiste.id" :value="artiste.id">

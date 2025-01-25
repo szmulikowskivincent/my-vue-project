@@ -5,6 +5,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 import RegisterForm from "./components/RegisterForm.vue";
 import LoginForm from "./components/LoginForm.vue";
@@ -20,6 +22,8 @@ import Corbeille from "./views/dataAPI/corbeille.vue";
 import Genres from "./views/dataAPI/genres.vue";
 import PostTracks from "./views/dataAPI/postTracks.vue";
 import SubNavBar from "./views/dataAPI/sub-NavBar.vue";
+import AllData from "./views/dataAPI/data/allData.vue";
+import RedirectAllData from "./views/dataAPI/buttonAllData.vue";
 
 const routes = [
   { path: "/", component: RegisterForm },
@@ -35,6 +39,8 @@ const routes = [
   { path: "/tracks", component: PostTracks },
   { path: "/sub-navbar", component: SubNavBar },
   { path: "/dashboardAPI", component: DashboardAPI },
+  { path: "/allData", component: AllData },
+  { path: "/redirectAllData", component: RedirectAllData },
 ];
 
 const router = createRouter({

@@ -121,7 +121,7 @@
             </div>
             <div class="container-fluid mt-5">
                 <!-- Barre de recherche -->
-                <div style=" margin-top: -800px;" class="text-center mb-4">
+                <div style=" margin-top: -830px;" class="text-center mb-4">
                     <input type="text" v-model="searchQuery" class="form-control form-control-lg w-50 mx-auto"
                         placeholder="🔎 Rechercher un artiste ou un album..." />
                 </div>

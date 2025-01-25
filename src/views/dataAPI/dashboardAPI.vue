@@ -4,11 +4,12 @@
     <SelectAllArtistes />
     <div class="container mt-5">
       <img src="" />
-      <h1 style="margin-inline-start: -2150px; margin-block-start: -350px;" class="text-center">
+      <h1 style="margin-inline-start: -2150px; margin-block-start: -320px;" class="text-center">
         <i class="bi bi-house-door"></i> Dashboard API
       </h1>
       <div class="row">
         <div class="col-md-12">
+          <ButtonAllData />
           <Logout />
           <Albums />
           <postTracksVue />
@@ -29,16 +30,18 @@ import PostAlbums from './postAlbums.vue';
 import Corbeille from './corbeille.vue';
 import Genres from '../dataAPI/genres.vue';
 import Logout from '../dataAPI/logout.vue';
+import ButtonAllData from './buttonAllData.vue';
 
 export default {
   components: {
+    ButtonAllData,
     Albums,
     SelectAllArtistes,
     PostAlbums,
     Corbeille,
     Genres,
     Logout,
-    postTracksVue,
+    postTracksVue
   },
 };
 </script>

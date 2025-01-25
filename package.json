@@ -12,9 +12,12 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "bootstrap-vue": "^2.23.1",
     "bootstrap-vue-next": "^0.26.19",
+    "chart.js": "^4.4.7",
     "my-vue-project": "file:",
     "vue": "^3.5.13",
+    "vue-chartjs": "^5.3.2",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
