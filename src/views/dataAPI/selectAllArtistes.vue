@@ -28,7 +28,7 @@
 
     <!-- Modal -->
     <div v-if="showModal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-      style="display: block;">
+      style="display: block; margin-left: 15px;">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
