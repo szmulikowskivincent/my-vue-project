@@ -1,10 +1,7 @@
 <template>
   <div class="background-container">
     <div class="container-fluid my-5">
-      <div
-        class="d-flex align-items-center justify-content-center mb-4"
-        style="margin-left: -35px;"
-      >
+      <div class="d-flex align-items-center justify-content-center mb-4" style="margin-left: -35px;">
         <img
           src="https://static.vecteezy.com/system/resources/previews/027/224/002/original/spotify-3d-logo-free-png.png"
           alt="Spotify Logo"
@@ -19,18 +16,10 @@
       </div>
 
       <div class="d-flex justify-content-center align-items-center mb-4">
-        <button
-          class="btn btn-secondary me-3"
-          :disabled="historyIndex <= 0"
-          @click="goBack"
-        >
+        <button class="btn btn-secondary me-3" :disabled="historyIndex <= 0" @click="goBack">
           <i class="bi bi-arrow-left"></i> Back
         </button>
-        <button
-          class="btn btn-secondary"
-          :disabled="historyIndex >= searchHistory.length - 1"
-          @click="goForward"
-        >
+        <button class="btn btn-secondary" :disabled="historyIndex >= searchHistory.length - 1" @click="goForward">
           Forward <i class="bi bi-arrow-right"></i>
         </button>
       </div>
@@ -46,11 +35,7 @@
           placeholder="🔎 Search by Albums, Artists, Genres, Types, Tracks ..."
         />
 
-        <ul
-          v-if="showAutocomplete && filteredSuggestions.length"
-          class="list-group position-absolute w-100"
-          style="z-index: 10; top: 100%;"
-        >
+        <ul v-if="showAutocomplete && filteredSuggestions.length" class="list-group position-absolute w-100" style="z-index: 10; top: 100%;">
           <li
             v-for="(suggestion, index) in filteredSuggestions"
             :key="index"
@@ -58,10 +43,7 @@
             @mousedown="useSuggestion(suggestion)"
           >
             {{ suggestion }}
-            <button
-              class="btn btn-danger btn-sm"
-              @click.stop="removeFromHistory(suggestion)"
-            >
+            <button class="btn btn-danger btn-sm" @click.stop="removeFromHistory(suggestion)">
               <i class="bi bi-x"></i>
             </button>
           </li>
@@ -75,26 +57,26 @@
         </h2>
 
         <div v-if="data && data.length > 0">
-          <table
-            :class="'table ' + getSectionColorClass(key)"
-            style="width: 100%; border-collapse: collapse;"
-          >
+          <table :class="'table ' + getSectionColorClass(key)" style="width: 100%; border-collapse: collapse;">
             <thead>
               <tr>
                 <th
                   v-for="header in getHeaders(data)"
                   :key="header"
+                  :style="{ width: getColumnWidth(header) }"
                   style="padding: 12px; text-align: left; background-color: #f8f9fa; border: 1px solid #ddd;"
                 >
+                  <i :class="getIconClass(header)" class="me-2"></i>
                   {{ header }}
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in data" :key="index">
+              <tr v-for="(item, index) in data" :key="index" :class="{'bg-light': index % 2 === 1}">
                 <td
                   v-for="header in getHeaders(data)"
                   :key="header"
+                  :style="{ width: getColumnWidth(header) }"
                   style="padding: 10px; text-align: left; border: 1px solid #ddd;"
                 >
                   {{ item[header] }}
@@ -251,6 +233,31 @@ export default {
       };
       return colorClasses[key] || "table-light";
     },
+    getIconClass(header) {
+      const icons = {
+        name: "bi bi-person",
+        title: "bi bi-music-note",
+        genre: "bi bi-collection",
+        album: "bi bi-disc",
+        duration: "bi bi-clock",
+        type: "bi bi-folder",
+      };
+      return icons[header.toLowerCase()] || "bi bi-info-circle";
+    },
+    getColumnWidth(header) {
+      const widthMapping = {
+        id: "50px",
+        name: "200px",
+        title: "300px",
+        genre: "150px",
+        album: "250px",
+        duration: "100px",
+        type: "150px",
+        default: "150px",
+      };
+
+      return widthMapping[header.toLowerCase()] || widthMapping.default;
+    },
   },
   mounted() {
     this.fetchData();
@@ -266,44 +273,40 @@ export default {
   padding: 20px;
 }
 
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
 .section-divider {
   border: 1px solid #ddd;
   opacity: 0.6;
 }
 
-td,
-th {
-  padding: 10px;
-  text-align: start; 
+.table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: start;
   border: 1px solid #ddd;
-  vertical-align: middle; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.section {
-  padding-block-end: 20px;
+h1 {
+  font-size: 2rem;
 }
 
-.list-group-item:hover {
-  background-color: #f0f0f0;
-}
-
-.background-container {
-  background-image: url('https://as2.ftcdn.net/v2/jpg/04/26/05/99/1000_F_426059997_XbLhzCn8mwDcrJRtNVGS2oGkPoc6qITE.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.75;
-  inline-size: 100%;
-  block-size: 100vh;
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-}
-
-.container {
-  position: relative;
-  z-index: 1;
+h2 {
+  font-size: 1.75rem;
 }
 </style>
+
+
 
 
 

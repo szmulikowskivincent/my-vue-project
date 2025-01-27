@@ -4,7 +4,7 @@
     <SelectAllArtistes />
     <div class="container mt-5">
       <img src="" />
-      <h1 style="margin-inline-start: -2100px; margin-block-start: -320px;" class="text-center">
+      <h1 style="margin-inline-start: -2150px; margin-block-start: -320px;" class="text-center">
         <i class="bi bi-house-door"></i> Dashboard API
       </h1>
       <div class="row">

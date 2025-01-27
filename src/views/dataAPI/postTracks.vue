@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-5">
-        <div style="margin-top: -340px; margin-left: -595px;" class="form-container">
+        <div style="margin-top: -320px; margin-left: -573px;" class="form-container">
             <div class="text-center">
                 <img src="https://www.globalcharge.com/assets/media/logo4.png" alt="Turntable" class="mb-3"
                     style="width: 250px;" />
@@ -75,7 +75,7 @@
 
     <!-- Display saved tracks -->
     <div style="width: 50px" class="mt-5">
-        <ul style="margin-top: -705px; margin-left: -150px" class="list-group">
+        <ul style="margin-top: -698px; margin-left: -140px" class="list-group">
             <li style="height: 100px;" v-for="(savedTrack, index) in savedTracks" :key="index" class="list-group-item">
                 <strong>🎧{{ savedTrack.name }}<br /></strong>🛡️{{ savedTrack.composer }}<br />
                 <span><i>♫ Album ID: {{ savedTrack.album_id }}</i></span>

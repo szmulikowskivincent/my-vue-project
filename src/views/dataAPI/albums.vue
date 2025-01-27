@@ -68,7 +68,7 @@
 
                     <!-- Album de Démo avec couleur différente -->
                     <div class="col-md-4 mb-4"
-                        style="background-color: transparent; margin-left: -320px; margin-top: -365px;">
+                        style="background-color: transparent; margin-left: -315px; margin-top: -375px;">
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -121,7 +121,7 @@
             </div>
             <div class="container-fluid mt-5">
                 <!-- Barre de recherche -->
-                <div style=" margin-top: -830px;" class="text-center mb-4">
+                <div style=" margin-top: -810px;" class="text-center mb-4">
                     <input type="text" v-model="searchQuery" class="form-control form-control-lg w-50 mx-auto"
                         placeholder="🔎 Rechercher un artiste ou un album..." />
                 </div>
